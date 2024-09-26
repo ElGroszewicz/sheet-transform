@@ -9,7 +9,7 @@ import java.util.List;
 public class Parser {
     List<List<String>> data = new ArrayList<>();
     
-    void read(String fileName) {
+    public void read(String fileName) {
         try (CSVReader csvReader = new CSVReader(new FileReader(fileName))) {
             String[] values;
             while ((values = csvReader.readNext()) != null) {
