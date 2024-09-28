@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ParserTest {
+class ReaderTest {
     
     @Test
     void testReadCsv() throws IOException {
@@ -26,7 +26,7 @@ class ParserTest {
             writer.write("Alice,25,Los Angeles\n");
         }
         
-        List<List<String>> result = Parser.read(tempFile.getAbsolutePath());
+        List<List<String>> result = Reader.read(tempFile.getAbsolutePath());
         
         List<List<String>> expected = new ArrayList<>();
         expected.add(Arrays.asList("name", "age", "city"));
@@ -39,13 +39,13 @@ class ParserTest {
     }
     
     @Test
-    void testParseList() {
+    void testToArrayList() {
         List<List<String>> data = new ArrayList<>();
         data.add(Arrays.asList("name", "age", "city"));
         data.add(Arrays.asList("John", "30", "New York"));
         data.add(Arrays.asList("Alice", "25", "Los Angeles"));
         
-        String[][] csv = Parser.parse(data);
+        String[][] csv = Reader.toArray(data);
         
         String[][] expected = {{"name", "age", "city"}, {"John", "30",
                 "New " + "York"}, {"Alice", "25", "Los Angeles"}};
@@ -54,9 +54,9 @@ class ParserTest {
     }
     
     @Test
-    void testParseEmptyCsv() {
+    void testToArrayEmptyCsv() {
         List<List<String>> emptyData = new ArrayList<>();
-        String[][] csv = Parser.parse(emptyData);
+        String[][] csv = Reader.toArray(emptyData);
         
         assertArrayEquals(new String[0][0], csv);
     }
@@ -69,7 +69,7 @@ class ParserTest {
         data.add(Arrays.asList("John", "30", "New York"));
         data.add(Arrays.asList("Alice", "25", "Los Angeles"));
         
-        String[][] csv = Parser.parse(data);
+        String[][] csv = Reader.toArray(data);
         
         String[][] expected =
                 {{"name", "age"}, {"John", "30"}, {"Alice", "25"}};

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Parser {
+public class Reader {
+    private Reader() { }
+    
     public static List<List<String>> read(String fileName) {
         List<List<String>> data = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(new FileReader(fileName))) {
@@ -22,7 +24,7 @@ public class Parser {
         }
     }
     
-    public static String[][] parse(List<List<String>> data) {
+    public static String[][] toArray(List<List<String>> data) {
         int rows = data.size();
         int cols = rows > 0 ? data.get(0).size() : 0;
         
@@ -35,9 +37,5 @@ public class Parser {
         }
         
         return parsedData;
-    }
-    
-    public static String[][] parse(String fileName) {
-        return parse(read(fileName));
     }
 }
