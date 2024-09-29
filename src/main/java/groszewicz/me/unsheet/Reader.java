@@ -19,7 +19,7 @@ public class Reader {
             }
             return data;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error reading CSV file: " + e.getMessage());
             return new ArrayList<>();
         }
     }
